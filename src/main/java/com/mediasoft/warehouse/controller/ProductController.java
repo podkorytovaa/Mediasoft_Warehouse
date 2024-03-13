@@ -47,4 +47,9 @@ public class ProductController {
         productService.deleteProduct(productId);
         return ResponseEntity.ok("Товар удален со склада");
     }
+
+    @DeleteMapping
+    public void deleteAllProducts(){
+        productService.deleteAllProducts();
+    }
 }

@@ -53,14 +53,24 @@ public class ProductServiceImpl implements ProductService {
                 () -> new ProductNotFoundException(String.format("Товар с артикулом %s не найден", productId))
         );
 
-        product.setName(updateProduct.getName());
-        product.setDescription(updateProduct.getDescription());
-        product.setCategory(updateProduct.getCategory());
-        product.setPrice(updateProduct.getPrice());
+        if(updateProduct.getName() != null) {
+            product.setName(updateProduct.getName());
+        }
+        if(updateProduct.getDescription() != null) {
+            product.setDescription(updateProduct.getDescription());
+        }
+        if(updateProduct.getCategory() != null) {
+            product.setCategory(updateProduct.getCategory());
+        }
+        if(updateProduct.getPrice() != null) {
+            product.setPrice(updateProduct.getPrice());
+        }
         if (product.getQuantity() != updateProduct.getQuantity()) {
             product.setDateChange(new Date());
         }
-        product.setQuantity(updateProduct.getQuantity());
+        if(updateProduct.getQuantity() != null) {
+            product.setQuantity(updateProduct.getQuantity());
+        }
 
         validatorUtil.validate(product);
 
@@ -76,5 +86,10 @@ public class ProductServiceImpl implements ProductService {
         );
 
         productRepository.deleteById(productId);
+    }
+
+    @Override
+    public void deleteAllProducts() {
+        productRepository.deleteAll();
     }
 }
