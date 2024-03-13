@@ -6,9 +6,11 @@ import com.mediasoft.warehouse.mapper.ProductMapper;
 import com.mediasoft.warehouse.model.Product;
 import com.mediasoft.warehouse.repository.ProductRepository;
 import com.mediasoft.warehouse.service.ProductService;
+import com.mediasoft.warehouse.util.validation.ValidatorUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -18,10 +20,14 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
+    private final ValidatorUtil validatorUtil;
 
     @Override
     public ProductDto createProduct(ProductDto productDto) {
         Product product = ProductMapper.mapToProduct(productDto);
+        product.setDateCreate(new Date());
+        product.setDateChange(new Date());
+        validatorUtil.validate(product);
         Product saveProduct = productRepository.save(product);
         return ProductMapper.mapToProductDto(saveProduct);
     }
@@ -51,9 +57,12 @@ public class ProductServiceImpl implements ProductService {
         product.setDescription(updateProduct.getDescription());
         product.setCategory(updateProduct.getCategory());
         product.setPrice(updateProduct.getPrice());
+        if (product.getQuantity() != updateProduct.getQuantity()) {
+            product.setDateChange(new Date());
+        }
         product.setQuantity(updateProduct.getQuantity());
-        product.setDateChange(updateProduct.getDateChange());
-        product.setDateCreate(updateProduct.getDateCreate());
+
+        validatorUtil.validate(product);
 
         Product updateProductObj = productRepository.save(product);
 
