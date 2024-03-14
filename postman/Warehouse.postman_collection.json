@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "1d78b785-e547-43ac-9589-50aaa4d63230",
+		"name": "Warehouse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33616258"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "GetProducts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/product"
+					},
+					"response": []
+				},
+				{
+					"name": "GetProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"7b613a82-b38b-4020-997f-e33a4cbbf095\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/api/product/7b613a82-b38b-4020-997f-e33a4cbbf095"
+					},
+					"response": []
+				},
+				{
+					"name": "CreateProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([200,201]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"UUid is a non-empty\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name check\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.be.a('string').and.to.eql(\"Стул\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Description check\", function () {\r",
+									"  pm.expect(pm.response.json().description).to.be.a('string').and.to.eql(\"Описание стула\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Category check\", function () {\r",
+									"  pm.expect(pm.response.json().category).to.be.a('string').and.to.eql(\"Мебель\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Price is non-negative number\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.price).to.be.a('number').and.to.be.at.least(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Quantity is non-negative number\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.quantity).to.be.a('number').and.to.be.at.least(0);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Стул\",\r\n    \"description\": \"Описание стула\",\r\n    \"category\": \"Мебель\",\r\n    \"price\": 5000.00,\r\n    \"quantity\": 52\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/product"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"pm.test(\"Name check\", function () {\r",
+									"  pm.expect(pm.response.json().name).to.be.a('string').and.to.eql(\"Стул\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Description check\", function () {\r",
+									"  pm.expect(pm.response.json().description).to.be.a('string').and.to.eql(\"Удобный\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Category check\", function () {\r",
+									"  pm.expect(pm.response.json().category).to.be.a('string').and.to.eql(\"Мебель\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Price is non-negative number\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.price).to.be.a('number').and.to.be.at.least(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Quantity check\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.quantity).to.be.a('number').and.to.eql(50);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Удобный\",\r\n    \"quantity\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/api/product/603da0a6-71d1-42a6-95a0-7da74667cdb2"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body is string\", function () {\r",
+									"  pm.response.to.have.body(\"Товар удален со склада\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8082/api/product/3f0662b5-5c9a-4891-8956-49bf015ce258"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

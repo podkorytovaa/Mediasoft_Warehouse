@@ -23,7 +23,7 @@ public class ProductDto {
 
     private Integer quantity; // количество
 
-    @JsonFormat(pattern = "dd.MM.yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date dateChange; // дата и время последнего изменения количества
 
     @JsonFormat(pattern = "dd-MM-yyyy")

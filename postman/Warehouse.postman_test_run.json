@@ -1,0 +1,279 @@
+{
+	"id": "e39a9b91-fb18-436b-9721-bdc6f8eb9863",
+	"name": "Warehouse",
+	"timestamp": "2024-03-14T20:24:24.180Z",
+	"collection_id": "33616258-1d78b785-e547-43ac-9589-50aaa4d63230",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 22,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-03-14T20:24:23.407Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "fe26f0f0-12a1-4d10-8839-a330cf13f63b",
+			"name": "GetProducts",
+			"url": "http://localhost:8082/api/product",
+			"time": 37,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Content-Type header is application/json": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				37
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Content-Type header is application/json": true
+				}
+			]
+		},
+		{
+			"id": "29526c14-b3c7-4123-bade-ef9fea8f0bb0",
+			"name": "GetProduct",
+			"url": "http://localhost:8082/api/product/7b613a82-b38b-4020-997f-e33a4cbbf095",
+			"time": 19,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Content-Type header is application/json": true,
+				"Body matches string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				19
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Content-Type header is application/json": true,
+					"Body matches string": true
+				}
+			]
+		},
+		{
+			"id": "1b898f5b-ee4e-4a02-8095-86894c5bd57f",
+			"name": "CreateProduct",
+			"url": "http://localhost:8082/api/product",
+			"time": 19,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"UUid is a non-empty": true,
+				"Content-Type header is application/json": true,
+				"Name check": true,
+				"Description check": true,
+				"Category check": true,
+				"Price is non-negative number": true,
+				"Quantity is non-negative number": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"UUid is a non-empty": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name check": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Description check": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Category check": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Price is non-negative number": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Quantity is non-negative number": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				19
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"UUid is a non-empty": true,
+					"Content-Type header is application/json": true,
+					"Name check": true,
+					"Description check": true,
+					"Category check": true,
+					"Price is non-negative number": true,
+					"Quantity is non-negative number": true
+				}
+			]
+		},
+		{
+			"id": "110f0ccf-6550-4a7f-a954-1753a12b02bf",
+			"name": "UpdateProduct",
+			"url": "http://localhost:8082/api/product/603da0a6-71d1-42a6-95a0-7da74667cdb2",
+			"time": 30,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Content-Type header is application/json": true,
+				"Name check": true,
+				"Description check": true,
+				"Category check": true,
+				"Price is non-negative number": true,
+				"Quantity check": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Name check": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Description check": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Category check": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Price is non-negative number": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Quantity check": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				30
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Content-Type header is application/json": true,
+					"Name check": true,
+					"Description check": true,
+					"Category check": true,
+					"Price is non-negative number": true,
+					"Quantity check": true
+				}
+			]
+		},
+		{
+			"id": "a63626cc-e143-43c0-80e2-eb7a4b64150e",
+			"name": "DeleteProduct",
+			"url": "http://localhost:8082/api/product/3f0662b5-5c9a-4891-8956-49bf015ce258",
+			"time": 21,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Body is string": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				21
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Body is string": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 126,
+	"collection": {
+		"requests": [
+			{
+				"id": "fe26f0f0-12a1-4d10-8839-a330cf13f63b",
+				"method": "GET"
+			},
+			{
+				"id": "29526c14-b3c7-4123-bade-ef9fea8f0bb0",
+				"method": "GET"
+			},
+			{
+				"id": "1b898f5b-ee4e-4a02-8095-86894c5bd57f",
+				"method": "POST"
+			},
+			{
+				"id": "110f0ccf-6550-4a7f-a954-1753a12b02bf",
+				"method": "PUT"
+			},
+			{
+				"id": "a63626cc-e143-43c0-80e2-eb7a4b64150e",
+				"method": "DELETE"
+			}
+		]
+	}
+}
