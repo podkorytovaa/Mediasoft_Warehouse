@@ -11,8 +11,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.stream.Collectors;
 
+/**
+ * Класс, отвечающий за обработку исключений в контроллерах.
+ */
 @ControllerAdvice
 public class AdviceController {
+    /**
+     * Обработчик исключений ProductNotFoundException и ValidationException.
+     *
+     * @param e исключение, которое нужно обработать.
+     * @return ResponseEntity с сообщением об ошибке и статусом HTTP.
+     */
     @ExceptionHandler({
             ProductNotFoundException.class,
             ValidationException.class
@@ -21,6 +30,12 @@ public class AdviceController {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    /**
+     * Обработчик исключения MethodArgumentNotValidException.
+     *
+     * @param e исключение MethodArgumentNotValidException, которое нужно обработать.
+     * @return ResponseEntity с сообщением об ошибке и статусом HTTP.
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleBindException(MethodArgumentNotValidException e) {
         final ValidationException validationException = new ValidationException(
@@ -30,6 +45,12 @@ public class AdviceController {
         return handleException(validationException);
     }
 
+    /**
+     * Обработчик неизвестного исключения.
+     *
+     * @param e исключение, которое нужно обработать.
+     * @return ResponseEntity с сообщением об ошибке и статусом HTTP.
+     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleUnknownException(Throwable e) {
         e.printStackTrace();

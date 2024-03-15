@@ -6,26 +6,53 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.*;
 
+/**
+ * DTO для сущности <b>Product</b> (товар).
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
-    private UUID id; // артикул
+    /**
+     * Уникальный идентификатор товара (артикул).
+     */
+    private UUID id;
 
-    private String name; // название товара
+    /**
+     * Название товара.
+     */
+    private String name;
 
-    private String description; // описание
+    /**
+     * Описание товара.
+     */
+    private String description;
 
-    private String category; // категория
+    /**
+     * Категория товара.
+     */
+    private String category;
 
-    private BigDecimal price; // цена
+    /**
+     * Цена товара.
+     */
+    private BigDecimal price;
 
-    private Integer quantity; // количество
+    /**
+     * Количество товара.
+     */
+    private Integer quantity;
 
+    /**
+     * Дата и время последнего изменения количества.
+     */
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private Date dateChange; // дата и время последнего изменения количества
+    private Date dateChange;
 
+    /**
+     * Дата создания.
+     */
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private Date dateCreate; // дата создания
+    private Date dateCreate;
 }

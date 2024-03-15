@@ -1,0 +1,11 @@
+com.mediasoft.warehouse
+com.mediasoft.warehouse.controller
+com.mediasoft.warehouse.dto
+com.mediasoft.warehouse.exception
+com.mediasoft.warehouse.mapper
+com.mediasoft.warehouse.model
+com.mediasoft.warehouse.repository
+com.mediasoft.warehouse.service
+com.mediasoft.warehouse.service.impl
+com.mediasoft.warehouse.util.error
+com.mediasoft.warehouse.util.validation

@@ -13,17 +13,26 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Класс, содержащий unit-тесты для <b>ProductService</b>.
+ */
 @SpringBootTest
 public class ProductTests {
 
     @Autowired
     private ProductService productService;
 
+    /**
+     * Метод, который выполняется перед каждым тестом и удаляет все продукты из базы данных.
+     */
     @BeforeEach
     void setUp() {
         productService.deleteAllProducts();
     }
 
+    /**
+     * Тест для метода createProduct.
+     */
     @Test
     void testCreateProduct() {
         ProductDto productDto = new ProductDto();
@@ -38,6 +47,9 @@ public class ProductTests {
         Assertions.assertNotNull(productDto.getId());
     }
 
+    /**
+     * Тест для метода getProductById.
+     */
     @Test
     void testGetProductById() {
         String name = "Стол";
@@ -62,11 +74,17 @@ public class ProductTests {
         Assertions.assertEquals(quantity, findProduct.getQuantity());
     }
 
+    /**
+     * Тест для проверки обработки исключения ProductNotFoundException.
+     */
     @Test
     void testNotFoundProduct() {
         Assertions.assertThrows(ProductNotFoundException.class, () -> productService.getProductById(UUID.randomUUID()));
     }
 
+    /**
+     * Тест для метода updateProduct.
+     */
     @Test
     void testUpdateProduct() {
         ProductDto product = new ProductDto();
@@ -92,6 +110,9 @@ public class ProductTests {
         Assertions.assertEquals(quantity, pr.getQuantity());
     }
 
+    /**
+     * Тест для метода getAllProducts.
+     */
     @Test
     void testGetAllProducts() {
         ProductDto product1 = new ProductDto();
@@ -114,17 +135,26 @@ public class ProductTests {
         Assertions.assertEquals(products.size(), 2);
     }
 
+    /**
+     * Тест для метода getAllProducts, когда список товаров пустой.
+     */
     @Test
     void testGetAllProductsEmpty() {
         List<ProductDto> products = productService.getAllProducts();
         Assertions.assertEquals(products.size(), 0);
     }
 
+    /**
+     * Тест для проверки обработки исключения ProductNotFoundException при удалении несуществующего продукта.
+     */
     @Test
     void testDeleteNotExistingProduct(){
         Assertions.assertThrows(ProductNotFoundException.class, () -> productService.deleteProduct(UUID.randomUUID()));
     }
 
+    /**
+     * Юнит-тест для метода deleteAllProducts.
+     */
     @Test
     void testDeleteProduct() {
         ProductDto product1 = new ProductDto();

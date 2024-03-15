@@ -5,5 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
+/**
+ * Интерфейс репозитория для работы с товарами.
+ */
 public interface ProductRepository extends JpaRepository<Product, UUID> {
 }

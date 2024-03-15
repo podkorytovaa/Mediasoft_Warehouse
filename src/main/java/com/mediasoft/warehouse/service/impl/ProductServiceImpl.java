@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * Реализация интерфейса <b>ProductService</b>.
+ */
 @Service
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -22,6 +25,12 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     private final ValidatorUtil validatorUtil;
 
+    /**
+     * Метод для создания нового товара.
+     *
+     * @param productDto объект ProductDto, содержащий информацию о товаре.
+     * @return ProductDto, созданный товар.
+     */
     @Override
     public ProductDto createProduct(ProductDto productDto) {
         Product product = ProductMapper.mapToProduct(productDto);
@@ -32,6 +41,13 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.mapToProductDto(saveProduct);
     }
 
+    /**
+     * Метод для получения товара по UUID.
+     *
+     * @param productId идентификатор товара.
+     * @return ProductDto, найденный товар.
+     * @throws ProductNotFoundException если продукт с указанным UUID не найден.
+     */
     @Override
     public ProductDto getProductById(UUID productId) {
         Product product = productRepository.findById(productId)
@@ -40,6 +56,11 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.mapToProductDto(product);
     }
 
+    /**
+     * Метод для получения всех товаров.
+     *
+     * @return список объектов ProductDto, представляющих все товары.
+     */
     @Override
     public List<ProductDto> getAllProducts() {
         List<Product> products = productRepository.findAll();
@@ -47,6 +68,14 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Метод для редактирования информации о товаре.
+     *
+     * @param productId     идентификатор товара, который нужно обновить.
+     * @param updateProduct объект ProductDto, содержащий обновленную информацию о товаре.
+     * @return ProductDto, обновленный товар.
+     * @throws ProductNotFoundException если продукт с указанным UUID не найден.
+     */
     @Override
     public ProductDto updateProduct(UUID productId, ProductDto updateProduct) {
         Product product = productRepository.findById(productId).orElseThrow(
@@ -79,6 +108,12 @@ public class ProductServiceImpl implements ProductService {
         return ProductMapper.mapToProductDto(updateProductObj);
     }
 
+    /**
+     * Метод для удаления товара по UUID.
+     *
+     * @param productId идентификатор товара, который нужно удалить.
+     * @throws ProductNotFoundException если продукт с указанным UUID не найден.
+     */
     @Override
     public void deleteProduct(UUID productId) {
         Product product = productRepository.findById(productId).orElseThrow(
@@ -88,6 +123,9 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteById(productId);
     }
 
+    /**
+     * Метод для удаления всех товаров.
+     */
     @Override
     public void deleteAllProducts() {
         productRepository.deleteAll();

@@ -11,6 +11,11 @@ java {
 	sourceCompatibility = '17'
 }
 
+bootRun {
+	systemProperties = System.properties
+	systemProperty 'spring.profiles.active', project.hasProperty('prod') ? 'prod' : 'dev'
+}
+
 repositories {
 	mavenCentral()
 }

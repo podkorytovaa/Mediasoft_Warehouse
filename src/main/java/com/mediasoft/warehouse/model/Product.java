@@ -9,6 +9,9 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.*;
 
+/**
+ * Класс-сущность товар.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,35 +19,59 @@ import java.util.*;
 @Entity
 @Table(name = "products")
 public class Product {
+    /**
+     * Уникальный идентификатор товара (артикул).
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id; // артикул
+    private UUID id;
 
+    /**
+     * Название товара.
+     */
     @Column(name = "name", nullable = false)
     @NotBlank(message = "Поле name не может быть null или пустым")
-    private String name; // название товара
+    private String name;
 
+    /**
+     * Описание товара.
+     */
     @Column(name = "description", nullable = false)
     @NotBlank(message = "Поле description не может быть null или пустым")
-    private String description; // описание
+    private String description;
 
+    /**
+     * Категория товара.
+     */
     @Column(name = "category", nullable = false)
     @NotBlank(message = "Поле category не может быть null или пустым")
-    private String category; // категория
+    private String category;
 
+    /**
+     * Цена товара.
+     */
     @Column(name = "price", nullable = false)
     @Min(value = 0, message = "Поле price не может быть меньше 0")
     @NotNull(message = "Поле price не может быть null")
-    private BigDecimal price; // цена
+    private BigDecimal price;
 
+    /**
+     * Количество товара.
+     */
     @Column(name = "quantity", nullable = false)
     @Min(value = 0, message = "Поле quantity не может быть меньше 0")
     @NotNull(message = "Поле price не может быть null")
-    private Integer quantity; // количество
+    private Integer quantity;
 
+    /**
+     * Дата и время последнего изменения количества.
+     */
     @Column(name = "date_change", nullable = false)
-    private Date dateChange; // дата и время последнего изменения количества
+    private Date dateChange;
 
+    /**
+     * Дата создания.
+     */
     @Column(name = "date_create", nullable = false)
-    private Date dateCreate; // дата создания
+    private Date dateCreate;
 }
